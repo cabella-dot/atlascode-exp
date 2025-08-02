@@ -37,7 +37,7 @@ class AtlascodeWindow(val project: Project) {
 
 		}
 
-		loadURL("http://localhost:3000/index.html")
+		loadURL("http://localhost:5173/index.html")
 		this.cefBrowser.executeJavaScript("window.postMessage = function (message: any) {" +
 				myJSQueryOpenInBrowser.inject("message") + "}", this.cefBrowser.url, 0)
 	}
