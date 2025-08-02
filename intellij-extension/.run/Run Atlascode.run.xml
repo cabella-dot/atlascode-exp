@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Atlascode" type="CompoundRunConfigurationType">
+    <toRun name="Run Extension" type="GradleRunConfiguration" />
+    <toRun name="Start GUI" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
