@@ -2,6 +2,7 @@ plugins {
 	id("java")
 	id("org.jetbrains.kotlin.jvm") version "2.1.0"
 	id("org.jetbrains.intellij.platform") version "2.5.0"
+	id("com.apollographql.apollo") version "4.3.2"
 }
 
 group = "com.atlassian"
@@ -23,6 +24,13 @@ dependencies {
 
 		// Add necessary plugin dependencies for compilation here, example:
 		// bundledPlugin("com.intellij.java")
+	}
+	implementation("com.apollographql.apollo:apollo-runtime:4.3.2")
+}
+
+apollo {
+	service("service") {
+		packageName.set("io.atlassian.micros.agg")
 	}
 }
 

@@ -1,18 +1,29 @@
+import React from "react";
 import "./App.css";
-import { TreeItem } from "./jira/tree/tree-item/TreeItem";
+import "@vscode/codicons/dist/codicon.css";
+import { TreeList } from "./tree/TreeList";
+import type { WorkItemInfo } from "./types";
+import { useMessenger } from "./messenger";
 
 function App() {
+  const [items, setItems] = React.useState<WorkItemInfo[]>([]);
+  const [isDone, setIsDone] = React.useState(false);
+
+  const messageHandler = React.useCallback((event: MessageEvent) => {
+    console.log("Received message:", event.data);
+  }, []);
+
+  const { post } = useMessenger(messageHandler);
+
+  React.useEffect(() => {
+    if (!isDone) {
+      post("request", {});
+    }
+  }, [isDone, post]);
+
   return (
     <>
-      <TreeItem
-        details={{
-          key: "JIRA-123",
-          summary: "Fix the bug in the application",
-          status: "In Progress",
-          type: { name: "Task", iconUrl: "https://example.com/task-icon.png" },
-          priority: { name: "High", iconUrl: "https://example.com/high" },
-        }}
-      />
+      <TreeList items={items} title="Assigned jira work items" />
     </>
   );
 }

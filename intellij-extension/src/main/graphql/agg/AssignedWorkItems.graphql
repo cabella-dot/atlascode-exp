@@ -1,0 +1,32 @@
+query AssignedWorkItems {
+    jira {
+        issueSearch(issueSearchInput: {
+            jql: "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC"
+        }, cloudId: "12e73ff5-8b07-4b31-be8e-67ee0666fc43") @optIn(to: "JiraSpreadsheetComponent-M1"){
+            edges {
+                node {
+                    key,
+                    webUrl,
+                    issueTypeField {
+                        issueType {
+                            name
+                        }
+                    }
+                    issueTypeAvatarUrl,
+                    summary,
+                    descriptionField {
+                        description,
+                    },
+                    status {
+                        name
+                    },
+                    statusCategory {
+                        name,
+                        colorName
+                    },
+                    isResolved,
+                }
+            }
+        }
+    }
+}
